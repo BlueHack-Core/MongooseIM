@@ -2408,7 +2408,8 @@ send_config_update(Type, StateData) ->
 
 
 -spec send_invitation(ejabberd:jid(), ejabberd:jid(), binary(), state()) -> mongoose_acc:t().
-send_invitation(From, To, Reason, StateData=#state{host=Host, server_host=ServerHost, jid=RoomJID}) ->
+send_invitation(From, To, Reason, StateData=#state{host=Host, server_host=ServerHost,
+                jid=RoomJID}) ->
     ejabberd_hooks:run(invitation_sent, Host, [Host, ServerHost, RoomJID, From, To, Reason]),
     Config = StateData#state.config,
     Password = case Config#config.password_protected of
